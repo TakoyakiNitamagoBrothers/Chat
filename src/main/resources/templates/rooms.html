@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms Page</title>
+</head>
+<body>
+	<h1 th:text="'ようこそ' + ${session.loginUser} + 'さん'">ようこそゲストさん</h1>
+
+	<h2>Rooms List</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Room Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody id="roomsTableBody">
+		</tbody>
+	</table>
+
+	<!-- ルーム作成フォーム -->
+	<h2>Create a New Room</h2>
+	<form th:action="@{/createRoom}" method="post">
+		<input type="text" name="newRoomName" placeholder="Enter room name"
+			required />
+		<button type="submit">Create Room</button>
+	</form>
+	<script src="/js/rooms.js" th:src="@{/js/rooms.js}" defer></script>
+</body>
+</html>

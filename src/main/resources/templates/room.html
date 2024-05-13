@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Room</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div class="chat-container">
+		<header class="chat-header">
+			<h1>Chat Room</h1>
+			<button id="leave-btn" class="btn">Leave Room</button>
+		</header>
+		<main class="chat-main">
+			<div class="chat-sidebar">
+				<h3>Room Name:</h3>
+				<div id="room-data" th:data-room-id="${session.currentRoom.roomId}">
+					<h2 id="room-name" th:text="${session.currentRoom.name}">missing
+						room name</h2>
+				</div>
+
+				<h3 th:text="${session.loginUser}+'さん以外のユーザー'">Users:</h3>
+				<ul id="users">
+					<!-- Usernames will be added here dynamically -->
+				</ul>
+			</div>
+			<div class="chat-container" style="height: 400px; overflow: auto;">
+				<ul id="messageList">
+				</ul>
+			</div>
+		</main>
+		<div class="chat-form-container">
+			<form id="chat-form">
+				<input id="messageInput" name="message" type="text"
+					placeholder="Enter Message" required autocomplete="off" />
+				<button class="btn" type="submit" id="submitButton">
+					<i class="fas fa-paper-plane"></i> Send
+				</button>
+			</form>
+		</div>
+	</div>
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"
+		defer></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+		defer></script>
+
+	<script src="/js/app.js" th:src="@{/js/app.js}" defer></script>
+</body>
+</html>
